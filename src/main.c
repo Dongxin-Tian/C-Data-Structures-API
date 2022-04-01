@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedlist.h"
+#include "arraylist.h"
 
 int main(void) {
 
+    printf("Linked list test: \n");
     // Create an integer linked list
     LinkedList* llist = create_linkedlist();
 
@@ -28,6 +30,15 @@ int main(void) {
         printf("%d\n", *(int*)node->data);
         node = node->next;
     }
+    
+    free_linkedlist(llist);
+    free(a);
+    free(b);
+    free(c);
+
+    printf("Array list test: \n");
+    ArrayList* alist = create_arraylist();
+    
 
     return 0;
 }

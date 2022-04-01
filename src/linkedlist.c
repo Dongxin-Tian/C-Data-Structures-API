@@ -106,10 +106,15 @@ void linkedlist_remove_at(LinkedList* llist, int index) {
     free(node);
 }
 
-void linkedlist_free(LinkedList* llist) {
+void free_linkedlist(LinkedList* llist) {
     LinkedNode* node = llist->first;
     while (node != NULL) {
         node = node->next;
+
+        // If node is the last node
+        if (node == NULL)
+            break;
+
         free(node->prev);
     }
     

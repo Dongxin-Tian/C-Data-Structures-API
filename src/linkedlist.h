@@ -22,6 +22,6 @@ void linkedlist_addfirst(LinkedList* llist, void* data);
 void linkedlist_removelast(LinkedList* llist);
 void linkedlist_removefirst(LinkedList* llist);
 void linkedlist_remove_at(LinkedList* llist, int index);
-void linkedlist_free(LinkedList* llist);
+void free_linkedlist(LinkedList* llist);
 
 #endif // LINKED_LIST_H
