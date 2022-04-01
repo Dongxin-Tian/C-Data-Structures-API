@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 #include "arraylist.h"
+#include "stack.h"
 
 int main(void) {
 
@@ -32,9 +33,7 @@ int main(void) {
     }
     
     free_linkedlist(llist);
-    free(a);
-    free(b);
-    free(c);
+    free(a); free(b); free(c);
 
     printf("Array list test: \n");
     ArrayList* alist = create_arraylist();
@@ -57,11 +56,29 @@ int main(void) {
         if (i != alist->length - 1)
             printf(", ");
     }
+    printf("\n");
 
     free_arraylist(alist);
-    free(a);
-    free(b);
-    free(c);
+    free(a); free(b); free(c);
+
+    printf("Stack test: \n");
+    a = malloc(sizeof(int));
+    *a = 1;
+    b = malloc(sizeof(int));
+    *b = 2;
+    c = malloc(sizeof(int));
+    *c = 3;
+    Stack* stack = create_stack();
+    stack_push(stack, a);
+    stack_push(stack, b);
+    stack_push(stack, c);
+
+    while (!stack_is_empty(stack)) {
+        printf("%d\n", *(int*)stack_pop(stack));
+    }
+
+    free(stack);
+    free(a); free(b); free(c);
 
     return 0;
 }
