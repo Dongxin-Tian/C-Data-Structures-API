@@ -65,8 +65,6 @@ void** arraylist_to_array(ArrayList* alist) {
 }
 
 void free_arraylist(ArrayList* list) {
-    for (register int i = 0; i < list->capacity; i++) {
-        free(list->data[i]);
-    }
+    free(list->data);
     free(list);
 }
