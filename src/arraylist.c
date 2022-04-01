@@ -15,20 +15,53 @@ void arraylist_add(ArrayList* alist, void* data) {
     // If the capacity is not enough, double the capacity by reallocating
     if (alist->length >= alist->capacity) {
         alist->capacity *= 2;
-        realloc(alist->data, sizeof(void*) * (alist->capacity + 1));
+        alist->data = realloc(alist->data, sizeof(void*) * (alist->capacity + 1));
     }
 
     alist->data[alist->length - 1] = data;
 }
 
 void arraylist_remove(ArrayList* alist, void* data_ptr) {
+    int index = -1;
+    for (register int i = 0; i < alist->length; i++) {
+        // The element to remove
+        if (alist->data[i] == data_ptr) {
+            index = i;
+            break;
+        }
+    }
+
+    // Didn't find the element in the list
+    if (index == -1)
+        return;
     
+    alist->length--;
+
+    // Rearrange the list
+    for (register int i = index; i < alist->length; i++) {
+        alist->data[i] = alist->data[i + 1];
+    }
+    alist->data[alist->length] = NULL;
 }
 
 void arraylist_remove_at(ArrayList* alist, int index) {
-    if (index < 0 && index >= alist->length) {
-        
+    // If the index is out of range
+    if (index < 0 && index >= alist->length)
+        return;
+    
+    alist->length--;
+    for (register int i = index; i < alist->length; i++) {
+        alist->data[i] = alist->data[i + 1];
     }
+    alist->data[alist->length] = NULL;
+}
+
+void** arraylist_to_array(ArrayList* alist) {
+    void** array = malloc(sizeof(void*) * (alist->length + 1));
+    for (register int i = 0; i < alist->length; i++) {
+        array[i] = alist->data[i];
+    }
+    return array;
 }
 
 void free_arraylist(ArrayList* list) {

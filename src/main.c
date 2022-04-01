@@ -38,7 +38,30 @@ int main(void) {
 
     printf("Array list test: \n");
     ArrayList* alist = create_arraylist();
-    
+    a = malloc(sizeof(int));
+    *a = 1;
+    b = malloc(sizeof(int));
+    *b = 2;
+    c = malloc(sizeof(int));
+    *c = 3;
+    arraylist_add(alist, a);
+    arraylist_add(alist, b);
+    arraylist_add(alist, c);
+
+    arraylist_remove(alist, a);
+    arraylist_remove_at(alist, 0);
+
+    // Print the array list
+    for (register int i = 0; i < alist->length; i++) {
+        printf("%d", *(int*)alist->data[i]);
+        if (i != alist->length - 1)
+            printf(", ");
+    }
+
+    free_arraylist(alist);
+    free(a);
+    free(b);
+    free(c);
 
     return 0;
 }

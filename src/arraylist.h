@@ -15,6 +15,7 @@ ArrayList* create_arraylist(void);
 void arraylist_add(ArrayList* alist, void* data);
 void arraylist_remove(ArrayList* alist, void* data_ptr);
 void arraylist_remove_at(ArrayList* alist, int index);
+void** arraylist_to_array(ArrayList* alist);
 void free_arraylist(ArrayList* list);
 
 #endif // ARRAY_LIST_H
